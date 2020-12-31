@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CleanArchitecture.Domain.Common;
 using CleanArchitecture.Domain.Enums;
 using CleanArchitecture.Domain.Events;
@@ -11,9 +12,11 @@ namespace CleanArchitecture.Domain.Entities.Todo
 
         public string Title { get; set; }
 
-        public string Note { get; set; }
+        public string Description { get; set; }
 
         public PriorityLevel Priority { get; set; }
+
+        public DateTime? Reminder { get; set; }
 
         public bool Done
         {
