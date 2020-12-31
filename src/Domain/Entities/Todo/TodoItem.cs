@@ -1,15 +1,36 @@
-﻿using CleanArchitecture.Domain.Enums;
+﻿using System.Collections.Generic;
+using CleanArchitecture.Domain.Common;
+using CleanArchitecture.Domain.Enums;
+using CleanArchitecture.Domain.Events;
 
 namespace CleanArchitecture.Domain.Entities.Todo
- {
-     public class TodoItem : BaseEntity
-     {
-         public string Title { get; set; }
- 
-         public string Note { get; set; }
+{
+    public class TodoItem : BaseEntity, IHasDomainEvent
+    {
+        private bool _done;
 
-         public PriorityLevel Priority { get; set; }
- 
-         public TodoList List { get; set; }
-     }
- }
+        public string Title { get; set; }
+
+        public string Note { get; set; }
+
+        public PriorityLevel Priority { get; set; }
+
+        public bool Done
+        {
+            get => _done;
+            set
+            {
+                if (value && _done == false)
+                {
+                    DomainEvents.Add(new TodoItemCompletedEvent(this));
+                }
+
+                _done = value;
+            }
+        }
+
+        public TodoList List { get; set; }
+
+        public IList<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
+    }
+}
