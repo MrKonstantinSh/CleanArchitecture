@@ -1,6 +1,8 @@
-﻿namespace CleanArchitecture.Domain.Entities
+﻿using CleanArchitecture.Domain.Common;
+
+namespace CleanArchitecture.Domain.Entities
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity : AuditableEntity
     {
         public int Id { get; set; }
     }
