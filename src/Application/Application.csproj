@@ -6,4 +6,12 @@
     	<AssemblyName>CleanArchitecture.Application</AssemblyName>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
+    </ItemGroup>
+
 </Project>
