@@ -10,6 +10,11 @@ namespace CleanArchitecture.Domain.Entities.Todo
     {
         private bool _done;
 
+        public TodoItem()
+        {
+            DomainEvents = new List<DomainEvent>();
+        }
+        
         public string Title { get; set; }
 
         public string Description { get; set; }
@@ -34,6 +39,6 @@ namespace CleanArchitecture.Domain.Entities.Todo
 
         public TodoList List { get; set; }
 
-        public IList<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
+        public IList<DomainEvent> DomainEvents { get; set; }
     }
 }
