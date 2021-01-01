@@ -13,7 +13,7 @@ namespace CleanArchitecture.Infrastructure.Persistence.Configurations
                 .IsRequired();
 
             builder
-                .OwnsOne(b => b.Colour);
+                .OwnsOne(c => c.Colour);
         }
     }
 }

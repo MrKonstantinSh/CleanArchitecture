@@ -21,7 +21,7 @@ namespace CleanArchitecture.Infrastructure
 
             services.AddScoped<IDomainEventService, DomainEventService>();
             services.AddTransient<IDateTimeService, DateTimeService>();
-
+            
             return services;
         }
     }

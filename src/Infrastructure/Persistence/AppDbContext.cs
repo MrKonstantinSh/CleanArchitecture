@@ -16,7 +16,7 @@ namespace CleanArchitecture.Infrastructure.Persistence
         private readonly IDateTimeService _dateTimeService;
         
         public AppDbContext(
-            DbContextOptions options,
+            DbContextOptions<AppDbContext> options,
             ICurrentUserService currentUserService,
             IDomainEventService domainEventService,
             IDateTimeService dateTimeService) : base(options)

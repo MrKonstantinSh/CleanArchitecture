@@ -7,9 +7,25 @@ namespace CleanArchitecture.Domain.ValueObjects
 {
     public class Colour : ValueObject
     {
+        private Colour()
+        {
+        }
+
         private Colour(string code)
         {
             Code = code;
+        }
+
+        public static Colour From(string code)
+        {
+            var colour = new Colour { Code = code };
+
+            if (!SupportedColours.Contains(colour))
+            {
+                throw new UnsupportedColourException(code);
+            }
+
+            return colour;
         }
 
         public static Colour White => new Colour("#FFFFFF");
@@ -28,34 +44,7 @@ namespace CleanArchitecture.Domain.ValueObjects
 
         public static Colour Grey => new Colour("#999999");
 
-        public string Code { get; }
-
-        protected static IEnumerable<Colour> SupportedColours
-        {
-            get
-            {
-                yield return White;
-                yield return Red;
-                yield return Orange;
-                yield return Yellow;
-                yield return Green;
-                yield return Blue;
-                yield return Purple;
-                yield return Grey;
-            }
-        }
-
-        public static Colour From(string code)
-        {
-            var colour = new Colour(code);
-
-            if (!SupportedColours.Contains(colour))
-            {
-                throw new UnsupportedColourException(code);
-            }
-
-            return colour;
-        }
+        public string Code { get; private set; }
 
         public static implicit operator string(Colour colour)
         {
@@ -70,6 +59,21 @@ namespace CleanArchitecture.Domain.ValueObjects
         public override string ToString()
         {
             return Code;
+        }
+
+        protected static IEnumerable<Colour> SupportedColours
+        {
+            get
+            {
+                yield return White;
+                yield return Red;
+                yield return Orange;
+                yield return Yellow;
+                yield return Green;
+                yield return Blue;
+                yield return Purple;
+                yield return Grey;
+            }
         }
 
         protected override IEnumerable<object> GetEqualityComponents()
